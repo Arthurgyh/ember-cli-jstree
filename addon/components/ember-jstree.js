@@ -101,6 +101,14 @@ export default Ember.Component.extend(InboundActions, EmberJstreeActions, {
                 configObject["core"]["check_callback"] = true;
             }
 
+	    //2015-07-29 ArthurGyh: add dnd plugin
+            var dndOptions = this.get('dndOptions');
+            if(dndOptions && pluginsArray.indexOf("dnd") !== -1) {
+                configObject["dnd"] = dndOptions;
+            }
+	    //dnd plugin end.
+
+	    
             var checkboxOptions = this.get('checkboxOptions');
             if(checkboxOptions && pluginsArray.indexOf("checkbox") !== -1) {
                 configObject["checkbox"] = checkboxOptions;
