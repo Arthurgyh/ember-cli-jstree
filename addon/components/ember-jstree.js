@@ -98,14 +98,24 @@ export default Ember.Component.extend(InboundActions, EmberJstreeActions, {
                 pluginsArray.indexOf("dnd") !== -1 ||
                 pluginsArray.indexOf("unique") !== -1) {
                 // These plugins need core.check_callback
-                configObject["core"]["check_callback"] = true;
+		if(!configObject["core"].check_callback)
+			configObject["core"]["check_callback"] = true;
             }
 
 	    //2015-07-29 ArthurGyh: add dnd plugin
-            var dndOptions = this.get('dndOptions');
-            if(dndOptions && pluginsArray.indexOf("dnd") !== -1) {
-                configObject["dnd"] = dndOptions;
-            }
+	    function _try_setPluginOptions(name,pluginsArray, configObject){
+		    var dndOptions = this.get(name + 'Options');
+		    if(dndOptions && pluginsArray.indexOf(name) !== -1) {
+			configObject[name] = dndOptions;
+		    }
+	    }
+	    //dndOptions
+	    _try_setPluginOptions("dnd", pluginsArray, configObject);
+	    //typesOptions
+	    //_try_setPluginOptions("types", pluginsArray, configObject);
+	    //massloadOptions
+	    _try_setPluginOptions("massload", pluginsArray, configObject);
+	    
 	    //dnd plugin end.
 
 	    
