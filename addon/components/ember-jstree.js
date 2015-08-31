@@ -126,7 +126,7 @@ export default Ember.Component.extend(InboundActions, EmberJstreeActions, {
 
             var stateOptions = this.get('stateOptions');
             if(stateOptions && pluginsArray.indexOf("state") !== -1) {
-                configObject["checkbox"] = stateOptions;
+                configObject["state"] = stateOptions;
             }
 
             var typesOptions = this.get('typesOptions');
