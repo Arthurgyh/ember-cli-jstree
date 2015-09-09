@@ -103,8 +103,9 @@ export default Ember.Component.extend(InboundActions, EmberJstreeActions, {
             }
 
 	    //2015-07-29 ArthurGyh: add dnd plugin
+	    var self = this;
 	    function _try_setPluginOptions(name,pluginsArray, configObject){
-		    var dndOptions = this.get(name + 'Options');
+		    var dndOptions = self.get(name + 'Options');
 		    if(dndOptions && pluginsArray.indexOf(name) !== -1) {
 			configObject[name] = dndOptions;
 		    }
